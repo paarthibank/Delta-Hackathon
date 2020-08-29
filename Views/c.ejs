@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+	<form action="/ost" method="POST">
+	<div class="container-fluid">
+		<div class="jumbotron" id="jumbotron" style="text-align: center;">
+			<div style="float: left">
+		  <h1 class="display-4" style="text-align: center;" ><%=a%></h1>
+		  	<input type="hidden" name="comp" value="<%=a%>">
+		  <hr class="my-4">
+		  <p align="center"><input type="text" id="tagline" name="tag" style="width: 900px;"></p>
+		  
+		</div>
+		
+		</div>
+	</div>
+
+	<div class="container-fluid" id="big">
+
+		<div class="row" style="margin: 30px">
+			<div class="col btn btn-secondary text-nowrap" style="width: 25%">Home</div>
+			<div class="col btn btn-secondary" style="width: 25%"><input type="text" id="col1" name="col1"></div>
+			<div class="col btn btn-secondary" style="width: 25%"><input type="text" id="col2" name="col2"></div>
+			<div class="col btn btn-secondary" style="width: 25%"><input type="text" id="col3" name="col3"></div>
+		</div>
+	
+	<img src="abc.jpg" class="img-fluid" alt="Responsive image" style="width: 97%;height: 500px;border-style: solid;margin: 10px">
+	<div style="margin: 30px">
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+		<span class="input-group-text" id="basic-addon1">Heading</span>
+		<input type="hidden" name="size" id="size">
+		</div>
+		<input type="text" class="form-control" id="header" aria-label="Username" aria-describedby="basic-addon1" name="header">
+	</div>
+	
+
+
+	<div class="input-group">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">Content</span>
+	  </div>
+	  <textarea class="form-control" aria-label="With textarea" id="content" rows="25" name="content"></textarea>
+	</div>
+	</div>
+
+	</div>
+	<button type="submit" class="btn btn-secondary" style="margin: 30px;">Overall submit</button>
+	</form>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var move,bold=1,inc=1;
+		function s(){
+			document.getElementById("logo").style.left="1200px";
+		}
+		 function m(){
+		 	var logo=document.getElementById("logo");
+		 	logo.style.left="900px";
+		 }
+		 document.getElementById("bg").addEventListener("mousedown",function(){
+		 	document.getElementById("jumbotron").style.backgroundColor=document.getElementById("bg").value;
+		 })
+		 function b(){
+		 	document.getElementById("heading").style.fontSize=60/(bold)+"px";
+		 	bold++;
+		 	if(inc>1)
+		 		inc=1;
+
+
+		 	
+		 }
+		
+		 function bol(){
+		 	document.getElementById("heading").style.fontSize=60*inc+"px";
+		 	if(bold>1)
+		 		bold=1;
+		 	inc++;
+		 }
+		
+		 document.getElementById("colo").addEventListener("mousedown",function(){
+		 	document.getElementById("big").style.backgroundColor=document.getElementById("colo").value;
+		 })	 	
+	</script>
+	<script type="text/javascript">
+		var bold=1,inc=1;
+		function dec(){
+		 	document.getElementById("header").style.fontSize=60/bold+"px";
+		 	bold++;
+		 	if(inc>1)
+		 		inc=1;
+		 	document.getElementById("size").value=document.getElementById("header").style.fontSize;
+
+
+		 	
+		 }
+		
+		 function incr(){
+		 	document.getElementById("header").style.fontSize=60*inc+"px";
+		 	inc++;
+		 	if(bold>1)
+		 		bold=1;
+		 	document.getElementById("size").value=document.getElementById("header").style.fontSize;
+		 }
+		 function subm(){
+		 	
+			var pos=document.getElementById("logo").style.left;				
+			var tag=document.getElementById("tagline").value;
+			var name=document.getElementById("heading").value;
+			var bg=document.getElementById("bg").value;
+			var font=document.getElementById("heading").style.fontSize;
+			var out={
+				tag,name,bg,font,pos
+				
+			};
+
+			var request=new XMLHttpRequest();	
+
+			request.open("POST","http://localhost:3000/ajaxd");			
+			request.onreadystatechange=function(){
+				if(request.readyState==4){
+				
+					
+				}
+
+				
+			}
+			request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+			request.send(JSON.stringify(out));
+			
+		}
+	</script>
+	<script type="text/javascript">
+		
+	</script>
+</body>
